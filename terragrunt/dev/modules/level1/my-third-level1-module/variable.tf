@@ -50,7 +50,7 @@ variable "resource_group_name" {
 variable "service_endpoints" {
   type        = list(string)
   description = "The list of service endpoints to associate with the subnet"
-  default     = Null
+  default     = null
 }
 variable "services_to_delegate" {
   type        = string
@@ -71,7 +71,7 @@ variable "subnet_not_have_private_services" {
   description = "Enable or Disable network policies for the private link service on the subnet"
   default     = null
 }
-variable "subnet_priceses" {
+variable "subnet_prefixes" {
   type        = list(string)
   description = "IP CIDR for the new subnet"
 }
@@ -91,5 +91,5 @@ variable "udr_routes" {
 }
 variable "vnet_name" {
   type        = string
-  description = "name of the vnet to create"
+  description = "Name of the vnet to create"
 }

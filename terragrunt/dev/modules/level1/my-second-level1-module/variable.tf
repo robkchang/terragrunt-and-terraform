@@ -1,7 +1,7 @@
 variable "extra_tags" {
   type        = map(string)
   description = "Extra tags to merge with the tags map"
-  default = {}
+  default     = {}
 }
 variable "resource_group_name" {
   type        = string
@@ -10,7 +10,7 @@ variable "resource_group_name" {
 variable "tags" {
   type        = map(string)
   description = "Tags that the resource should have"
-  default = {}
+  default     = {}
 }
 variable "location" {
   type        = string

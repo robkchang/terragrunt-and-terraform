@@ -1,6 +1,6 @@
 # Vnet 
 module "env_vnet" {
-  source = "./modules/level1/vnet"
+  source = "./modules/level1/my-second-level1-module"
 
   name                = join("-", [var.subscription_name, var.resource_group_name, "vnet"])
   vnet_address_space  = var.vnet_address_space
@@ -24,7 +24,7 @@ CSV
 }
 
 module "subnet_gateway" {
-  source = "./modules/level1/subnets_nsg"
+  source = "./modules/level1/my-third-level1-module"
 
   #subnet values
   subnet_name                       = "GatewaySubnet"
@@ -59,7 +59,7 @@ CSV
 }
 
 module "subnet_aci" {
-  source = "./modules/level1/subnets_nsg"
+  source = "./modules/level1/my-third-level1-module"
 
   #subnet values
   subnet_name                       = "azure-container-instance-snet"
@@ -98,7 +98,7 @@ CSV
 }
 
 module "subnet_app_gw" {
-  source = "./modules/level1/subnets_nsg"
+  source = "./modules/level1/my-third-level1-module"
   #subnet values
   subnet_name                       = "app-gateway-snet"
   location                          = var.location
@@ -137,7 +137,7 @@ CSV
 
 }
 module "subnet_endpoints" {
-  source = "./modules/level1/subnets_nsg"
+  source = "./modules/level1/my-third-level1-module"
 
   #subnet values
   subnet_name                       = "private-endpoint-snet"
@@ -179,7 +179,7 @@ CSV
 }
 module "subnet_ase" {
   for_each = { for aseSnet in local.ase_csv : aseSnet.name => aseSnet }
-  source   = "./modules/level1/subnets_nsg"
+  source   = "./modules/level1/my-third-level1-module"
 
   #subnet values
   subnet_name                       = each.value.name
@@ -216,7 +216,7 @@ CSV
   cloud_rules        = csvdecode(local.cloud_rules_in_csv)
 }
 module "subnet_cloud" {
-  source = "./modules/level1/subnets_nsg"
+  source = "./modules/level1/my-third-level1-module"
 
   subnet_name                       = "cloud-snet"
   location                          = var.location
@@ -251,7 +251,7 @@ CSV
   cloud_udr_rules        = csvdecode(local.cloud_udr_rules_in_csv)
 }
 module "subnet_cloud_udr" {
-  source = "./modules/level1/subnets_nsg"
+  source = "./modules/level1/my-third-level1-module"
 
   subnet_name                       = "cloud-udr-snet"
   location                          = var.location
@@ -310,7 +310,7 @@ CSV
   cloud_outbound_rules        = csvdecode(local.cloud_outbound_rules_in_csv)
 }
 module "subnet_cloud_outbound" {
-  source = "./modules/level1/subnets_nsg"
+  source = "./modules/level1/my-third-level1-module"
   #subnet values
   subnet_name                       = "firewall-snet"
   location                          = var.location
@@ -346,7 +346,7 @@ CSV
 
 }
 module "subnet_vmss" {
-  source = "./modules/level1/subnets_nsg"
+  source = "./modules/level1/my-third-level1-module"
 
   #subnet values
   subnet_name                       = "vmss-snet"
@@ -382,7 +382,7 @@ locals {
 }
 # module to create private dns zones
 module "private_dns_zones" {
-  source              = "./modules/level1/dns_zone"
+  source              = "./modules/level1/my-fourth-level1-module"
   for_each            = toset(var.private_dns_zones)
   resource_type       = each.value
   resource_group_name = var.resource_group_name
@@ -395,7 +395,7 @@ module "private_dns_zones" {
 
 # dns_forwarder container instance
 module "dns_forwarder" {
-  source = "./modules/level1/aci"
+  source = "./modules/level1/my-fifth-level1-module"
 
   name                = join("-", [var.subscription_name, var.resource_group_name])
   location            = var.location

@@ -21,7 +21,7 @@ variable "enable_udr" {
 variable "extra_tags" {
   type        = map(string)
   description = "Extra tags to merge with the tags map"
-  default = {}
+  default     = {}
 }
 variable "location" {
   type        = string
@@ -78,7 +78,7 @@ variable "subnet_prefixes" {
 variable "tags" {
   type        = map(string)
   description = "Tags that the resource should have"
-  default = {}
+  default     = {}
 }
 variable "udr_routes" {
   type = list(object({

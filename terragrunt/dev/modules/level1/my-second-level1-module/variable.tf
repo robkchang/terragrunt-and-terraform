@@ -16,3 +16,6 @@ variable "location" {
   type        = string
   description = "The geographical location of the resource"
 }
+variable "vnet_address_space" {
+  type = list(string)
+}
